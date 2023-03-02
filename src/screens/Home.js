@@ -23,12 +23,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    image: {
-        width: '100%',
-        aspectRatio: 1
-    },
-    itemContainer: {
-        width: '50%',
-        padding: 1
-    }
 })
