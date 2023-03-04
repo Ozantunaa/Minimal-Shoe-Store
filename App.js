@@ -5,9 +5,9 @@ import ProductDetail from './src/screens/ProductDetail'
 const App = () => {
   return (
     <>
-     {/*  <Home/> */}
+      {/*  <Home/> */}
       {/* <ProductDetail /> */}
-      <CartScreen/>
+      <CartScreen />
     </>
   )
 }
