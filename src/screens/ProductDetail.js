@@ -1,14 +1,18 @@
-import { ScrollView } from 'react-native';
+import { Pressable, ScrollView } from 'react-native';
 import { Image, StyleSheet, View, FlatList, useWindowDimensions, Text } from 'react-native'
 import products from '../data/products'
 
 const ProductDetail = () => {
     const product = products[0];
-    const { width } = useWindowDimensions()
+    const { width } = useWindowDimensions();
+
+    const addToCard = () => {
+
+    }
 
     return (
         <View>
-            <ScrollView>
+            <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
                 {/* Top Images */}
                 <FlatList
                     data={product.images}
@@ -16,7 +20,7 @@ const ProductDetail = () => {
                         <Image source={{ uri: item }} style={{ width: width, aspectRatio: 1 }} />
                     )}
                     horizontal
-                    showsHorizontalScrollIndicator={false}
+                    //showsHorizontalScrollIndicator={false}
                     pagingEnabled
                 />
                 {/* Details */}
@@ -27,6 +31,9 @@ const ProductDetail = () => {
                 </View>
             </ScrollView>
             {/* Add Card Button */}
+            <Pressable onPress={addToCard} style={styles.button}>
+                <Text style={styles.buttonText}>Add to cart</Text>
+            </Pressable>
 
 
         </View>
@@ -51,6 +58,20 @@ const styles = StyleSheet.create({
         fontWeight: '300',
         lineHeight: 30,
         marginVertical: 10
-
     },
+    button: {
+        position: 'absolute',
+        bottom: 30,
+        backgroundColor: 'black',
+        alignSelf: 'center',
+        width: '80%',
+        alignItems: 'center',
+        padding: 20,
+        borderRadius: 100
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: '500'
+    }
 })
