@@ -1,29 +1,28 @@
 import { Pressable, ScrollView } from 'react-native';
 import { Image, StyleSheet, View, FlatList, useWindowDimensions, Text } from 'react-native'
-import {useSelector} from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { cartSlice } from '../store/cartSlice';
 
 const ProductDetail = () => {
-    const product = useSelector((state)=> state.products.selectedProduct)
+
+    const product = useSelector((state) => state.products.selectedProduct);
+    const dispatch = useDispatch();
     const { width } = useWindowDimensions();
 
     const addToCard = () => {
-
+        dispatch(cartSlice.actions.addCartItem({ product }))
     }
 
     return (
         <View>
             <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
-                {/* Top Images */}
                 <FlatList
                     data={product.images}
                     renderItem={({ item }) => (
                         <Image source={{ uri: item }} style={{ width: width, aspectRatio: 1 }} />
                     )}
                     horizontal
-                    //showsHorizontalScrollIndicator={false}
-                    pagingEnabled
-                />
-                {/* Details */}
+                    pagingEnabled />
                 <View style={{ padding: 20 }}>
                     <Text style={styles.name}>{product.name}</Text>
                     <Text style={styles.price}>${product.price}</Text>

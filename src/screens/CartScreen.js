@@ -1,26 +1,35 @@
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native'
 import CartListItem from '../components/CartListItem'
-import cart from '../data/cart'
 import CartListFooter from '../components/CartListFooter'
+import { useSelector } from 'react-redux'
+import EmptyCart from '../components/EmptyCart'
 
 const CartScreen = () => {
+    const cart = useSelector((state) => state.cart.items)
+
     return (
         <>
-            <FlatList data={cart}
-                renderItem={({ item }) => <CartListItem cartItem={item} />}
-                ListFooterComponent={CartListFooter} />
+            {cart.length === 0 ? (
+                <EmptyCart />
+            ) : (
+                <>
+                    <FlatList data={cart}
+                        renderItem={({ item }) => <CartListItem cartItem={item} />}
+                        ListFooterComponent={CartListFooter} />
 
-            <Pressable style={styles.button}>
-                <Text style={styles.buttonText}>Checkout</Text>
-            </Pressable>
+                    <Pressable style={styles.button}>
+                        <Text style={styles.buttonText}>Checkout</Text>
+                    </Pressable>
+                </>
+            )}
         </>
-    );
+    )
 }
 
 export default CartScreen
 
 const styles = StyleSheet.create({
-    
+
     button: {
         position: 'absolute',
         bottom: 30,
