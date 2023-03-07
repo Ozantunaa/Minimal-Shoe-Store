@@ -1,9 +1,9 @@
 import { Pressable, ScrollView } from 'react-native';
 import { Image, StyleSheet, View, FlatList, useWindowDimensions, Text } from 'react-native'
-import products from '../data/products'
+import {useSelector} from 'react-redux'
 
 const ProductDetail = () => {
-    const product = products[0];
+    const product = useSelector((state)=> state.products.selectedProduct)
     const { width } = useWindowDimensions();
 
     const addToCard = () => {

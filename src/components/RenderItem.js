@@ -1,8 +1,14 @@
-import { Image, Pressable, StyleSheet } from 'react-native'
+import { Image, Pressable, StyleSheet } from 'react-native';
+import {useDispatch} from 'react-redux'
+import { productsSlice } from '../store/productsSlice';
 
 const RenderItem = ({ item, navigation }) => {
+    const dispatch = useDispatch()
 
-    const goToDetail = () => navigation.navigate('Product Detail');
+    const goToDetail = () => {
+        dispatch(productsSlice.actions.setSelectedProduct(item.id))
+        navigation.navigate('Product Detail')
+    }
 
     return (
         <Pressable onPress={goToDetail} style={styles.itemContainer}>
