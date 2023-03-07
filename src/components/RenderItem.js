@@ -1,11 +1,13 @@
-import { Image, StyleSheet, View } from 'react-native'
+import { Image, Pressable, StyleSheet } from 'react-native'
 
-const RenderItem = ({item}) => {
+const RenderItem = ({ item, navigation }) => {
+
+    const goToDetail = () => navigation.navigate('Product Detail');
+
     return (
-        <View style={styles.itemContainer}>
-            <Image source={{ uri: item.image }} style={styles.image}
-            />
-        </View>
+        <Pressable onPress={goToDetail} style={styles.itemContainer}>
+            <Image source={{ uri: item.image }} style={styles.image} />
+        </Pressable>
     );
 };
 

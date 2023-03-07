@@ -1,13 +1,8 @@
-import CartScreen from './src/screens/CartScreen'
-import Home from './src/screens/Home'
-import ProductDetail from './src/screens/ProductDetail'
-
+import Navigation from './src/navigation'
 const App = () => {
   return (
     <>
-      {/*  <Home/> */}
-      {/* <ProductDetail /> */}
-      <CartScreen />
+      <Navigation />
     </>
   )
 }

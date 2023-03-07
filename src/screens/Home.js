@@ -2,12 +2,12 @@ import { StyleSheet, FlatList, View } from 'react-native'
 import products from '../data/products'
 import RenderItem from '../components/RenderItem'
 
-const Home = () => {
+const Home = ({navigation}) => {
     return (
         <View style={styles.container}>
             <FlatList
                 data={products}
-                renderItem={RenderItem}
+                renderItem={({item})=> <RenderItem item={item} navigation={navigation}/>}
                 numColumns={2}
             />
         </View>
