@@ -12,7 +12,7 @@ const CartButton = ({ navigation }) => {
         <Pressable onPress={goToCart} style={styles.button}>
             <FontAwesome5 name='shopping-cart' size={20} color='gray' />
             <Text style={styles.text}>{numberOfSelectItems}</Text>
-        </Pressable>
+        </Pressable>  
     )
 }
 
@@ -27,6 +27,6 @@ const styles = StyleSheet.create({
     text: {
         color: 'gray',
         marginLeft: 10,
-        fontWeight:'500'
+        fontWeight:'700'
     },
 })

@@ -1,4 +1,4 @@
-import { Pressable, ScrollView } from 'react-native';
+import { Alert, Pressable, ScrollView } from 'react-native';
 import { Image, StyleSheet, View, FlatList, useWindowDimensions, Text } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { cartSlice } from '../store/cartSlice';
@@ -11,7 +11,9 @@ const ProductDetail = () => {
 
     const addToCard = () => {
         dispatch(cartSlice.actions.addCartItem({ product }))
-    }
+        Alert.alert('The product has been added to your cart')
+    };
+
 
     return (
         <View>
@@ -50,7 +52,7 @@ const styles = StyleSheet.create({
     price: {
         fontSize: 16,
         fontWeight: '500',
-        letterSpacing: 2
+        letterSpacing: 1
     },
     description: {
         fontSize: 18,

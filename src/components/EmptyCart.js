@@ -5,7 +5,7 @@ const EmptyCart = () => {
     return (
         <View style={styles.container}>
              <FontAwesome5 name='shopping-cart' size={100} color='gray' />
-             <Text style={styles.text}>Sepetinde ürün yok.</Text>
+             <Text style={styles.text}>There are no items in your cart.</Text>
         </View>
     )
 }
