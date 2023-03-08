@@ -2,19 +2,32 @@ import { Alert, Pressable, ScrollView } from 'react-native';
 import { Image, StyleSheet, View, FlatList, useWindowDimensions, Text } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { cartSlice } from '../store/cartSlice';
+import { favoritesSlice } from '../store/favoritesSlice';
+import { FontAwesome5, Ionicons } from '@expo/vector-icons'
 
 const ProductDetail = () => {
 
     const product = useSelector((state) => state.products.selectedProduct);
     const dispatch = useDispatch();
     const { width } = useWindowDimensions();
+    
+    const isFavorite = useSelector((state) =>
+        state.favorites.selectedFavorites.some((favorite) => favorite.product.id === product.id)
+    );
 
     const addToCard = () => {
         dispatch(cartSlice.actions.addCartItem({ product }))
         Alert.alert('The product has been added to your cart')
     };
 
-
+    const addToFavorite = () => {
+        if (isFavorite) {
+          dispatch(favoritesSlice.actions.removeSelectedFavorite({ product }));
+        } else {
+          dispatch(favoritesSlice.actions.addSelectedFavorite({ product }));
+        }
+      };
+      
     return (
         <View>
             <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
@@ -26,7 +39,13 @@ const ProductDetail = () => {
                     horizontal
                     pagingEnabled />
                 <View style={{ padding: 20 }}>
-                    <Text style={styles.name}>{product.name}</Text>
+                    <View style={styles.nameContainer}>
+                        <Text style={styles.name}>{product.name}</Text>
+                        <Pressable onPress={addToFavorite}>
+                            {isFavorite ? <Ionicons name='heart' color='red' size={24} /> :
+                                <FontAwesome5 name='heart' size={20} />}
+                        </Pressable>
+                    </View>
                     <Text style={styles.price}>${product.price}</Text>
                     <Text style={styles.description}>{product.description}</Text>
                 </View>
@@ -48,6 +67,11 @@ const styles = StyleSheet.create({
         fontSize: 34,
         fontWeight: '500',
         marginVertical: 10
+    },
+    nameContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
     },
     price: {
         fontSize: 16,

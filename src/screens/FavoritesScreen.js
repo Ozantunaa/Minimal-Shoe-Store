@@ -1,15 +1,17 @@
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native'
-import CartListItem from '../components/CartListItem'
+import { FlatList, StyleSheet } from 'react-native'
 import { useSelector } from 'react-redux'
+import FavoritesList from '../components/FavoritesList'
 
 const FavoritesScreen = () => {
-    const cart = useSelector((state) => state.cart.items)
+    const favorites = useSelector((state) => state.favorites.selectedFavorites)
 
     return (
         <>
             <FlatList
-                data={cart}
-                renderItem={({ item }) => <CartListItem cartItem={item} />} />
+                data={favorites}
+                renderItem={({ item }) => <FavoritesList favoritesItem={item} />}
+                numColumns={2}
+                />
         </>
     )
 }

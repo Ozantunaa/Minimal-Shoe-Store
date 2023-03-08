@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux'
 import { productsSlice } from '../store/productsSlice'
 import { useDispatch } from 'react-redux'
 
-
 const RenderImage = ({ item, navigation }) => {
 
     const dispatch = useDispatch()
+
     const storyDetail = () => {
         dispatch(productsSlice.actions.setSelectedProduct(item.id))
         navigation.navigate('Product Detail')
