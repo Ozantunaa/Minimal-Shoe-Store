@@ -11,7 +11,7 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         addCartItem: (state, action) => {
-            const newProduct = action.payload.product
+            const newProduct = action.payload.product;
             const cartItem = state.items.find((item) =>
                 item.product.id === newProduct.id)
             if (cartItem) {
@@ -50,4 +50,4 @@ export const selectTotal = (state) = createSelector(
     selectSubTotal,
     selectDeliveryPrice,
     (subtotal, delivery) => subtotal + delivery
-)
+);

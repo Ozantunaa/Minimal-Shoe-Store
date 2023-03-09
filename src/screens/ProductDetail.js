@@ -8,6 +8,7 @@ import { FontAwesome5, Ionicons } from '@expo/vector-icons'
 const ProductDetail = () => {
 
     const product = useSelector((state) => state.products.selectedProduct);
+    
     const dispatch = useDispatch();
     const { width } = useWindowDimensions();
     
@@ -46,7 +47,10 @@ const ProductDetail = () => {
                                 <FontAwesome5 name='heart' size={20} />}
                         </Pressable>
                     </View>
+                    <View>
                     <Text style={styles.price}>${product.price}</Text>
+                        
+                    </View>
                     <Text style={styles.description}>{product.description}</Text>
                 </View>
             </ScrollView>
